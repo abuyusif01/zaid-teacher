@@ -8,6 +8,7 @@ import Classes from "./pages/Classes";
 import Profile from "./pages/Profile";
 import { useInstructor } from "./context/InstructorContext";
 import MobileNav from "./components/MobileNav";
+import StudentPage from "./pages/Student";
 
 const App = () => {
   const { User } = useInstructor();
@@ -20,7 +21,10 @@ const App = () => {
             <Route path="/auth/:id" element={<Home />} />
             {User && (
               <Route path="/dashboard">
-                <Route path="students" element={<Students />} />
+                <Route path="students">
+                  <Route path="" element={<Students />} />
+                  <Route path=":id" element={<StudentPage />} />
+                </Route>
                 <Route path="classes" element={<Classes />} />
                 <Route path="profile" element={<Profile />} />
               </Route>

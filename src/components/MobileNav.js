@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { BsHouseFill, BsPersonFill } from "react-icons/bs";
 import { MdOutlineClass } from "react-icons/md";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useInstructor } from "../context/InstructorContext";
 
 const MobileNav = () => {
   const { getInstructorDash, User } = useInstructor();
-  const navigate = useNavigate();
   const location = useLocation();
   const isDash = location.pathname.includes("dashboard");
 
@@ -22,11 +21,11 @@ const MobileNav = () => {
   return (
     <>
       {isDash && (
-        <div className="absolute w-full h-16 bottom-0 md:hidden border-t border-t-gray-600">
+        <div className="fixed bg-white w-full h-16 bottom-0 md:hidden border-t border-t-gray-600">
           <div className="flex h-full justify-around items-center w-full">
-            <div
+            <Link
+              to="/dashboard/students"
               className="cursor-pointer space-y-1 w-full flex flex-col items-center justify-center"
-              onClick={() => navigate("/dashboard/students")}
             >
               <BsHouseFill
                 className={`text-2xl ${
@@ -40,10 +39,10 @@ const MobileNav = () => {
               >
                 Students
               </p>
-            </div>
-            <div
+            </Link>
+            <Link
+              to="/dashboard/classes"
               className="cursor-pointer space-y-1 w-full flex flex-col items-center justify-center"
-              onClick={() => navigate("/dashboard/classes")}
             >
               <MdOutlineClass
                 className={`text-2xl ${
@@ -57,10 +56,10 @@ const MobileNav = () => {
               >
                 Classes
               </p>
-            </div>
-            <div
+            </Link>
+            <Link
+              to="/dashboard/profile"
               className="cursor-pointer space-y-1 w-full flex flex-col items-center justify-center"
-              onClick={() => navigate("/dashboard/profile")}
             >
               <BsPersonFill
                 className={`text-2xl ${
@@ -74,7 +73,7 @@ const MobileNav = () => {
               >
                 Profile
               </p>
-            </div>
+            </Link>
           </div>
         </div>
       )}

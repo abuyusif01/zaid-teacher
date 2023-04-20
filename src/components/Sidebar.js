@@ -32,32 +32,35 @@ const Sidebar = () => {
               Zaid Instructor Portal
             </p>
           </div>
-          <div
+          <Link
+            to="/dashboard/students"
             className={`${
               dashLink("students")
                 ? "bg-indigo-500 text-white"
                 : "text-gray-500"
-            } rounded font-semibold flex items-center space-x-8 px-4 py-3`}
+            } rounded font-semibold flex items-center space-x-8 px-4 py-3 cursor-pointer`}
           >
             <BsHouseFill className="text-lg" />
-            <Link to="/dashboard/students">Students</Link>
-          </div>
-          <div
+            <p>Students</p>
+          </Link>
+          <Link
+            to="/dashboard/classes"
             className={`${
               dashLink("classes") ? "bg-indigo-500 text-white" : "text-gray-500"
-            } rounded font-semibold flex items-center space-x-8 px-4 py-3`}
+            } rounded font-semibold flex items-center space-x-8 px-4 py-3 cursor-pointer`}
           >
             <MdOutlineClass className="text-lg" />
-            <Link to="/dashboard/classes">Classes</Link>
-          </div>
-          <div
+            <p>Classes</p>
+          </Link>
+          <Link
+            to="/dashboard/profile"
             className={`${
               dashLink("profile") ? "bg-indigo-500 text-white" : "text-gray-500"
-            } rounded font-semibold flex items-center space-x-8 px-4 py-3`}
+            } rounded font-semibold flex items-center space-x-8 px-4 py-3 cursor-pointer`}
           >
             <BsPersonFill className="text-lg" />
-            <Link to="/dashboard/profile">Profile</Link>
-          </div>
+            <p>Profile</p>
+          </Link>
           <div className="absolute right-0 p-4 bottom-12 w-full">
             <button
               onClick={onLogOut}

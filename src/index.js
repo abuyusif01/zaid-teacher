@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import InstructorProvider from "./context/InstructorContext";
+import StudentProvider from "./context/StudentContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <InstructorProvider>
-      <App />
+      <StudentProvider>
+        <App />
+      </StudentProvider>
     </InstructorProvider>
   </React.StrictMode>
 );
