@@ -3,11 +3,16 @@ import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   const location = useLocation();
-  console.log(location);
+  const isDash = location.pathname.includes("dashboard");
+  console.log(isDash);
   return (
-    <div>
-      <p>Sidebar</p>
-    </div>
+    <>
+      {isDash ? (
+        <div className="w-72 bg-green-500 bg-opacity-20">
+          <p>Sidebar</p>
+        </div>
+      ) : null}
+    </>
   );
 };
 

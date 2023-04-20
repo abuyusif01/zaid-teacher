@@ -11,10 +11,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="flex h-screen">
-        <div className="w-48 bg-green-500 bg-opacity-50">
-          <Sidebar />
-        </div>
-        <div className="flex p-5">
+        <Sidebar />
+        <div className="flex-1 p-5">
           <Routes>
             <Route path="/auth/:id" element={<Home />} />
             <Route path="/dashboard">
