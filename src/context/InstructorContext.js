@@ -1,13 +1,26 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { auth, db } from "../firebase.config";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 const InstructorContext = createContext();
 export const useInstructor = () => useContext(InstructorContext);
 
 const InstructorProvider = ({ children }) => {
-  const [instructor, setInstructor] = useState({});
+  const [instructor, setInstructor] = useState(null);
+  const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [User, setUser] = useState(null);
 
@@ -33,8 +46,41 @@ const InstructorProvider = ({ children }) => {
       setInstructor(docSnap.data());
     } else {
       noEmail();
-      console.log("No such document!");
     }
+  };
+
+  const signUp = (email, password) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
+
+  const logIn = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setUser(user);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
+
+  const getInstructorDash = async (email) => {
+    const q = query(collection(db, "instructors"), where("email", "==", email));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      setInstructor(doc.data());
+    });
   };
 
   const logOut = async () => {
@@ -44,10 +90,19 @@ const InstructorProvider = ({ children }) => {
 
   return (
     <InstructorContext.Provider
-      value={{ User, instructor, loading, getInstructor, logOut }}
+      value={{
+        error,
+        User,
+        instructor,
+        loading,
+        getInstructor,
+        getInstructorDash,
+        signUp,
+        logIn,
+        logOut,
+      }}
     >
       {loading ? null : children}
-      {/* {children} */}
     </InstructorContext.Provider>
   );
 };
