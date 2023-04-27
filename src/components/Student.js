@@ -13,7 +13,7 @@ const Student = ({ student }) => {
           }`}
         >
           <div className="flex justify-between space-center">
-            <p className="px-3 py-1 rounded-xl inline bg-indigo-500 font-bold text-white text-sm">
+            <p className="px-3 py-1 rounded-xl inline bg-indigo-500 font-bold text-white text-xs md:text-sm">
               {student.active ? "Paid" : "Unpaid"}
             </p>
             <div>
@@ -30,22 +30,34 @@ const Student = ({ student }) => {
           />
         </div>
         <div className="space-y-4">
-          <div className="px-2 space-y-1 text-center select-none">
+          <div className="px-2 space-y-1 text-center select-none text-sm md:text-base">
             <p className="font-semibold">{student.fullName}</p>
             <p className="text-sm text-gray-500">{student.email}</p>
           </div>
           <div className="select-none flex justify-between w-full p-4 border-t border-t-2 border-t-gray-700 border-dashed">
             <div className="text-center">
-              <p className="capitalize text-gray-600 text-sm">Program</p>
-              <p className="font-bold capitalize">{student.program}</p>
+              <p className="capitalize text-gray-600 text-xs md:text-sm">
+                Program
+              </p>
+              <p className="font-bold capitalize text-sm md:text-base">
+                {student.program}
+              </p>
             </div>
             <div className="text-center">
-              <p className="capitalize text-gray-600 text-sm">pricing</p>
-              <p className="font-bold capitalize">{student.pricing}</p>
+              <p className="capitalize text-gray-600 text-xs md:text-sm">
+                pricing
+              </p>
+              <p className="font-bold capitalize text-sm md:text-base">
+                {student.pricing}
+              </p>
             </div>
             <div className="text-center">
-              <p className="capitalize text-gray-600 text-sm">plan</p>
-              <p className="font-bold capitalize">{student.plan}</p>
+              <p className="capitalize text-gray-600 text-xs md:text-sm">
+                plan
+              </p>
+              <p className="font-bold capitalize text-sm md:text-base">
+                {student.plan}
+              </p>
             </div>
           </div>
         </div>

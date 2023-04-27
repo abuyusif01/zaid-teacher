@@ -13,7 +13,7 @@ import pricingData from "../utils/pricing.json";
 import { useStudent } from "../context/StudentContext";
 
 const Profile = () => {
-  const { instructor } = useInstructor();
+  const { instructor, logOut } = useInstructor();
   const { students, getStudents } = useStudent();
   const [paidTime, setPaidTime] = useState(0);
   const [payments, setPayments] = useState([]);
@@ -54,18 +54,28 @@ const Profile = () => {
   return (
     <>
       {instructor ? (
-        <div className="space-y-8 px-5 py-12">
+        <div className="space-y-8 px-5 pt-12 pb-20">
           <div className=" grid grid-cols-6 gap-8">
             <div className="col-span-6 lg:col-span-3 2xl:col-span-2 rounded-lg shadow-lg p-8 space-y-4">
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-xl">Profile</p>
-                <div className="rounded-full bg-blue-300 bg-opacity-40 p-3">
-                  <BsPerson className="text-blue-700 text-xl" />
+                <p className="font-semibold text-sm md:text-xl">Profile</p>
+                <div className="rounded-full bg-blue-300 bg-opacity-40 p-3 hidden md:block">
+                  <BsPerson className="text-blue-700 text-lg md:text-xl" />
                 </div>
+                <button
+                  className="md:hidden px-4 py-3 bg-red-500 rounded text-white text-xs"
+                  onClick={logOut}
+                >
+                  Sign Out
+                </button>
               </div>
               <div className="text-center space-y-2">
-                <p className="text-xl font-semibold">{instructor?.fullName}</p>
-                <p className="text-gray-500 text-sm">{instructor?.email}</p>
+                <p className="text-sm md:text-xl font-semibold">
+                  {instructor?.fullName}
+                </p>
+                <p className="text-gray-500 text-sm md:text-sm">
+                  {instructor?.email}
+                </p>
               </div>
             </div>
             <div className="col-span-6 lg:col-span-3 2xl:col-span-2 rounded-lg shadow-lg p-8 space-y-4">
@@ -73,70 +83,80 @@ const Profile = () => {
                 <p className="font-semibold text-xl">Total Duration</p>
               </div>
               <div className="space-y-2 text-center">
-                <p className="font-semibold text-xl">{total}</p>
-                <p className="text-gray-500 text-sm">Total Minutes</p>
+                <p className="font-semibold text-sm md:text-xl">{total}</p>
+                <p className="text-gray-500 text-sm md:text-sm">
+                  Total Minutes
+                </p>
               </div>
             </div>
             <div className="col-span-3 2xl:col-span-1 rounded-lg shadow-lg px-5 py-8 space-y-4">
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-xl">Present</p>
+                <p className="font-semibold text-sm md:text-xl">Present</p>
                 <div className="rounded-full bg-purple-300 bg-opacity-40 p-3">
-                  <BsPersonCheck className="text-purple-700 text-xl" />
+                  <BsPersonCheck className="text-purple-700 text-lg md:text-xl" />
                 </div>
               </div>
               <div className="space-y-2 text-center">
-                <p className="font-semibold text-xl">{presentTotal}</p>
-                <p className="text-gray-500 text-sm"> Minutes</p>
+                <p className="font-semibold text-sm md:text-xl">
+                  {presentTotal}
+                </p>
+                <p className="text-gray-500 text-sm md:text-sm"> Minutes</p>
               </div>
             </div>
             <div className="col-span-3 2xl:col-span-1 rounded-lg shadow-lg px-5 py-8 space-y-4">
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-xl">No Show</p>
+                <p className="font-semibold text-sm md:text-xl">No Show</p>
                 <div className="rounded-full bg-indigo-300 bg-opacity-40 p-3">
-                  <BsPersonX className="text-indigo-700 text-xl" />
+                  <BsPersonX className="text-indigo-700 text-lg md:text-xl" />
                 </div>
               </div>
               <div className="space-y-2 text-center">
-                <p className="font-semibold text-xl">{absentTotal}</p>
+                <p className="font-semibold text-sm md:text-xl">
+                  {absentTotal}
+                </p>
                 <p className="text-gray-500 text-sm"> Minutes</p>
               </div>
             </div>
             <div className="col-span-3 2xl:col-span-2 rounded-lg shadow-lg p-8 space-y-4">
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-xl">Paid Time</p>
+                <p className="font-semibold text-sm md:text-xl">Paid Time</p>
                 <div className="rounded-full bg-red-300 bg-opacity-40 p-3">
-                  <BsCashStack className="text-red-700 text-xl" />
+                  <BsCashStack className="text-red-700 text-lg md:text-xl" />
                 </div>
               </div>
               <div className="text-center space-y-2">
-                <p className="text-xl font-semibold">{paidTime}</p>
-                <p className="text-gray-500 text-sm">Minutes</p>
+                <p className="text-sm md:text-xl font-semibold">{paidTime}</p>
+                <p className="text-gray-500 text-sm md:text-sm">Minutes</p>
               </div>
             </div>
             <div className="col-span-3 2xl:col-span-1 rounded-lg shadow-lg px-5 py-8 space-y-4">
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-xl">Unpaid</p>
+                <p className="font-semibold text-sm md:text-xl">Unpaid</p>
                 <div className="rounded-full bg-slate-300 bg-opacity-40 p-3">
-                  <BsCashCoin className="text-slate-700 text-xl" />
+                  <BsCashCoin className="text-slate-700 text-lg md:text-xl" />
                 </div>
               </div>
               <div className="space-y-2 text-center">
-                <p className="font-semibold text-xl">{total - paidTime}</p>
-                <p className="text-gray-500 text-sm"> Minutes</p>
+                <p className="font-semibold text-sm md:text-xl">
+                  {total - paidTime}
+                </p>
+                <p className="text-gray-500 text-sm md:text-sm"> Minutes</p>
               </div>
             </div>
             <div className="col-span-6 2xl:col-span-3 max-h-48 rounded-lg shadow-lg p-8 space-y-4  overflow-y-auto">
               <div className="flex items-center justify-between">
-                <p className="font-semibold text-xl">Payment History</p>
+                <p className="font-semibold text-sm md:text-xl">
+                  Payment History
+                </p>
                 <div className="rounded-full bg-orange-300 bg-opacity-40 p-3">
-                  <BsClockHistory className="text-orange-700 text-xl" />
+                  <BsClockHistory className="text-orange-700 text-lg md:text-xl" />
                 </div>
               </div>
               <div className="text-center">
                 {payments?.map((pay) => (
                   <div
                     key={pay.id}
-                    className="flex items-center justify-between text-sm text-gray-500 space-y-2"
+                    className="flex items-center justify-between text-sm md:text-sm text-gray-500 space-y-2"
                   >
                     <p>{moment(pay.payDay).format("MMMM Do YYYY")}</p>
                     <p>{pay.payment} minutes</p>

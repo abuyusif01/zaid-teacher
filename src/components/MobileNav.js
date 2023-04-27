@@ -21,7 +21,7 @@ const MobileNav = () => {
   return (
     <>
       {isDash && (
-        <div className="fixed bg-white w-full h-16 bottom-0 md:hidden border-t border-t-gray-600">
+        <div className="fixed bg-white w-full h-16 bottom-0 md:hidden border-t border-t-gray-600 text-xs">
           <div className="flex h-full justify-around items-center w-full">
             <Link
               to="/dashboard/students"
@@ -33,7 +33,7 @@ const MobileNav = () => {
                 }`}
               />
               <p
-                className={`text-xs text-2xl font-semibold ${
+                className={`text-xs font-semibold ${
                   dashLink("students") ? "text-indigo-500" : "text-gray-500"
                 }`}
               >
@@ -50,7 +50,7 @@ const MobileNav = () => {
                 }`}
               />
               <p
-                className={`text-xs text-2xl font-semibold ${
+                className={`text-xs font-semibold ${
                   dashLink("classes") ? "text-indigo-500" : "text-gray-500"
                 }`}
               >

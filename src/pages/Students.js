@@ -13,7 +13,7 @@ const Students = () => {
   }, [instructor]);
 
   return (
-    <div className="py-12 px-2 md:px-6">
+    <div className="px-5 pt-12 pb-20">
       <h1 className="px-4 font-semibold ">Students</h1>
       <div className="flex flex-wrap">
         {[...students].map((stud) => (
