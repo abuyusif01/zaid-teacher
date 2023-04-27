@@ -11,12 +11,19 @@ import {
 import moment from "moment";
 import pricingData from "../utils/pricing.json";
 import { useStudent } from "../context/StudentContext";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { instructor, logOut } = useInstructor();
   const { students, getStudents } = useStudent();
   const [paidTime, setPaidTime] = useState(0);
   const [payments, setPayments] = useState([]);
+  const navigate = useNavigate();
+
+  const onLogOut = () => {
+    logOut();
+    navigate(`/auth/${instructor.uid}`, { replace: true });
+  };
 
   useEffect(() => {
     if (instructor) getStudents(instructor.uid);
@@ -64,7 +71,7 @@ const Profile = () => {
                 </div>
                 <button
                   className="md:hidden px-4 py-3 bg-red-500 rounded text-white text-xs"
-                  onClick={logOut}
+                  onClick={onLogOut}
                 >
                   Sign Out
                 </button>

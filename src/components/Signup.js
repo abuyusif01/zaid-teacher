@@ -29,7 +29,7 @@ const Signup = ({ email, toggle }) => {
               validationSchema={signUpSchema}
               onSubmit={(value) => {
                 signUp(value.email, value.password);
-                navigate("/dashboard/profile");
+                navigate("/dashboard/profile", { replace: true });
               }}
             >
               {(formik) => (

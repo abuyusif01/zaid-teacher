@@ -27,7 +27,7 @@ const Login = ({ email, toggle }) => {
               validationSchema={loginSchema}
               onSubmit={(value) => {
                 logIn(value.email, value.password);
-                navigate("/dashboard/profile");
+                navigate("/dashboard/profile", { replace: true });
               }}
             >
               {(formik) => (
