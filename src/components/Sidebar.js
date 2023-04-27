@@ -3,9 +3,11 @@ import { BsHouseFill, BsPersonFill } from "react-icons/bs";
 import { MdOutlineClass } from "react-icons/md";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useInstructor } from "../context/InstructorContext";
+import { useStudent } from "../context/StudentContext";
 
 const Sidebar = () => {
   const { logOut, instructor, getInstructorDash, User } = useInstructor();
+  const { getStudents } = useStudent();
   const navigate = useNavigate();
   const location = useLocation();
   const isDash = location.pathname.includes("dashboard");
@@ -18,6 +20,13 @@ const Sidebar = () => {
     getInstructorDash(User?.email);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (instructor) {
+      getStudents(instructor.uid);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [instructor]);
 
   const dashLink = (link) => {
     return location.pathname.split("/").includes(link);

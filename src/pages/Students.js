@@ -1,16 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useStudent } from "../context/StudentContext";
-import { useInstructor } from "../context/InstructorContext";
 import Student from "../components/Student";
 
 const Students = () => {
-  const { students, getStudents } = useStudent();
-  const { instructor } = useInstructor();
-
-  useEffect(() => {
-    if (instructor) getStudents(instructor.uid);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [instructor]);
+  const { students } = useStudent();
 
   return (
     <div className="px-5 pt-12 pb-20">

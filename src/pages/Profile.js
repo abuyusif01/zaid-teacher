@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const { instructor, logOut } = useInstructor();
-  const { students, getStudents } = useStudent();
+  const { students } = useStudent();
   const [paidTime, setPaidTime] = useState(0);
   const [payments, setPayments] = useState([]);
   const navigate = useNavigate();
@@ -24,11 +24,6 @@ const Profile = () => {
     logOut();
     navigate(`/auth/${instructor.uid}`, { replace: true });
   };
-
-  useEffect(() => {
-    if (instructor) getStudents(instructor.uid);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [instructor]);
 
   const paymentData = students.map((stud) => {
     if (stud.classes) {
